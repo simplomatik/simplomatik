@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simplomatik — Automatización Inteligente</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-deep: #4c1d95;
+    --purple-main: #7c3aed;
+    --purple-mid: #a855f7;
+    --purple-light: #c4b5fd;
+    --purple-pale: #ede9fe;
+    --gold: #b8860b;
+    --gold-light: #d4a843;
+    --dark: #0f0a1e;
+    --text: #1e1035;
+    --cream: #faf9ff;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–cream);
+color: var(–text);
+overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+min-height: 100vh;
+background: var(–dark);
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 60px 24px;
+overflow: hidden;
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,0.35) 0%, transparent 70%),
+radial-gradient(ellipse 40% 40% at 80% 80%, rgba(168,85,247,0.15) 0%, transparent 60%);
+}
+
+.grid-overlay {
+position: absolute;
+inset: 0;
+background-image:
+linear-gradient(rgba(124,58,237,0.06) 1px, transparent 1px),
+linear-gradient(90deg, rgba(124,58,237,0.06) 1px, transparent 1px);
+background-size: 60px 60px;
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+text-align: center;
+max-width: 700px;
+}
+
+.logo-icon {
+width: 80px;
+height: 80px;
+background: linear-gradient(135deg, var(–purple-main), var(–purple-mid));
+border-radius: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 28px;
+box-shadow: 0 0 40px rgba(124,58,237,0.5);
+}
+
+.hero-tag {
+display: inline-block;
+font-size: 11px;
+letter-spacing: 5px;
+text-transform: uppercase;
+color: var(–purple-light);
+margin-bottom: 20px;
+font-weight: 500;
+}
+
+.hero h1 {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: clamp(52px, 10vw, 88px);
+font-weight: 700;
+letter-spacing: 4px;
+text-transform: uppercase;
+line-height: 0.95;
+background: linear-gradient(135deg, #fff 30%, var(–purple-light) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 8px;
+}
+
+.hero-sub {
+font-size: clamp(14px, 2.5vw, 18px);
+color: rgba(255,255,255,0.45);
+font-weight: 300;
+letter-spacing: 3px;
+text-transform: uppercase;
+margin-bottom: 32px;
+}
+
+.hero-desc {
+font-size: 17px;
+color: rgba(255,255,255,0.65);
+line-height: 1.7;
+max-width: 480px;
+margin: 0 auto 48px;
+font-weight: 300;
+}
+
+.hero-cta {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+background: linear-gradient(135deg, var(–purple-main), var(–purple-mid));
+color: #fff;
+padding: 14px 32px;
+border-radius: 50px;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-decoration: none;
+box-shadow: 0 8px 30px rgba(124,58,237,0.4);
+transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero-cta:hover {
+transform: translateY(-2px);
+box-shadow: 0 12px 40px rgba(124,58,237,0.5);
+}
+
+/* ── SERVICES ── */
+.services {
+padding: 100px 24px;
+background: var(–cream);
+position: relative;
+}
+
+.services::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–purple-light), transparent);
+}
+
+.section-label {
+text-align: center;
+font-size: 11px;
+letter-spacing: 5px;
+text-transform: uppercase;
+color: var(–purple-main);
+font-weight: 600;
+margin-bottom: 16px;
+}
+
+.section-title {
+text-align: center;
+font-family: ‘Rajdhani’, sans-serif;
+font-size: clamp(32px, 5vw, 52px);
+font-weight: 700;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–text);
+margin-bottom: 60px;
+}
+
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 24px;
+max-width: 1000px;
+margin: 0 auto;
+}
+
+.service-card {
+background: #fff;
+border: 1px solid rgba(124,58,237,0.12);
+border-radius: 20px;
+padding: 36px 28px;
+transition: transform 0.2s, box-shadow 0.2s;
+position: relative;
+overflow: hidden;
+}
+
+.service-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg, var(–purple-main), var(–purple-mid));
+transform: scaleX(0);
+transition: transform 0.3s;
+transform-origin: left;
+}
+
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(124,58,237,0.1); }
+.service-card:hover::before { transform: scaleX(1); }
+
+.service-icon {
+width: 48px; height: 48px;
+background: var(–purple-pale);
+border-radius: 12px;
+display: flex; align-items: center; justify-content: center;
+margin-bottom: 20px;
+}
+
+.service-card h3 {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 20px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+color: var(–text);
+margin-bottom: 10px;
+}
+
+.service-card p {
+font-size: 14px;
+color: #6b7280;
+line-height: 1.65;
+font-weight: 300;
+}
+
+/* ── CTA BAND ── */
+.cta-band {
+background: linear-gradient(135deg, var(–purple-deep), var(–purple-main));
+padding: 80px 24px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+.cta-band::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background-image:
+linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+background-size: 40px 40px;
+}
+
+.cta-band h2 {
+position: relative;
+font-family: ‘Rajdhani’, sans-serif;
+font-size: clamp(28px, 5vw, 48px);
+font-weight: 700;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: #fff;
+margin-bottom: 12px;
+}
+
+.cta-band p {
+position: relative;
+font-size: 16px;
+color: rgba(255,255,255,0.65);
+margin-bottom: 32px;
+font-weight: 300;
+}
+
+.cta-email {
+position: relative;
+display: inline-flex;
+align-items: center;
+gap: 10px;
+background: rgba(255,255,255,0.12);
+border: 1px solid rgba(255,255,255,0.25);
+color: #fff;
+padding: 14px 28px;
+border-radius: 50px;
+font-size: 15px;
+font-weight: 500;
+text-decoration: none;
+backdrop-filter: blur(10px);
+transition: background 0.2s;
+}
+
+.cta-email:hover { background: rgba(255,255,255,0.2); }
+
+/* ── FOOTER ── */
+footer {
+background: var(–dark);
+padding: 40px 24px;
+text-align: center;
+}
+
+.footer-logo {
+font-family: ‘Rajdhani’, sans-serif;
+font-size: 24px;
+font-weight: 700;
+letter-spacing: 3px;
+text-transform: uppercase;
+background: linear-gradient(90deg, var(–purple-light), #fff);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 8px;
+}
+
+footer p {
+font-size: 13px;
+color: rgba(255,255,255,0.3);
+letter-spacing: 1px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content > * {
+animation: fadeUp 0.8s ease forwards;
+opacity: 0;
+}
+
+.logo-icon { animation-delay: 0.1s; }
+.hero-tag { animation-delay: 0.2s; }
+.hero h1 { animation-delay: 0.3s; }
+.hero-sub { animation-delay: 0.4s; }
+.hero-desc { animation-delay: 0.5s; }
+.hero-cta { animation-delay: 0.6s; }
+</style>
+
+</head>
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="grid-overlay"></div>
+  <div class="hero-content">
+
+```
+<div class="logo-icon">
+  <svg width="42" height="42" viewBox="0 0 38 38" fill="none">
+    <rect x="4" y="14" width="8" height="10" rx="3" stroke="white" stroke-width="2"/>
+    <rect x="26" y="14" width="8" height="10" rx="3" stroke="white" stroke-width="2"/>
+    <rect x="14" y="4" width="10" height="8" rx="3" stroke="white" stroke-width="2"/>
+    <rect x="14" y="26" width="10" height="8" rx="3" stroke="white" stroke-width="2"/>
+    <circle cx="19" cy="19" r="4" fill="white"/>
+    <path d="M12 19h2M24 19h2M19 12v2M19 24v2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<span class="hero-tag">Automatización inteligente</span>
+<h1>Simplomatik</h1>
+<p class="hero-sub">Colombia · Tecnología para tu negocio</p>
+<p class="hero-desc">Ayudamos a pequeños negocios y emprendedores a automatizar sus procesos con soluciones simples, rápidas y accesibles.</p>
+<a href="mailto:simplomatik@gmail.com" class="hero-cta">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+  Contáctanos
+</a>
+```
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+
+<section class="services">
+  <p class="section-label">Lo que hacemos</p>
+  <h2 class="section-title">Nuestros servicios</h2>
+
+  <div class="services-grid">
+
+```
+<div class="service-card">
+  <div class="service-icon">
+    <svg width="24" height="24" viewBox="0 0 38 38" fill="none">
+      <rect x="4" y="14" width="8" height="10" rx="3" stroke="#7c3aed" stroke-width="2"/>
+      <rect x="26" y="14" width="8" height="10" rx="3" stroke="#7c3aed" stroke-width="2"/>
+      <rect x="14" y="4" width="10" height="8" rx="3" stroke="#7c3aed" stroke-width="2"/>
+      <rect x="14" y="26" width="10" height="8" rx="3" stroke="#7c3aed" stroke-width="2"/>
+      <circle cx="19" cy="19" r="4" fill="#7c3aed"/>
+      <path d="M12 19h2M24 19h2M19 12v2M19 24v2" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h3>Automatización WhatsApp</h3>
+  <p>Bots conversacionales para confirmaciones, pedidos, recordatorios y atención al cliente por WhatsApp.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+  </div>
+  <h3>Gestión de eventos</h3>
+  <p>Invitaciones digitales, confirmación de asistencia y recordatorios automáticos para tus eventos.</p>
+</div>
+
+<div class="service-card">
+  <div class="service-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+  </div>
+  <h3>Flujos inteligentes</h3>
+  <p>Integración de herramientas como Make, Google Sheets y WhatsApp para automatizar tu negocio.</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- CTA -->
+
+<section class="cta-band">
+  <h2>¿Listo para automatizar?</h2>
+  <p>Escríbenos y diseñamos la solución perfecta para tu negocio</p>
+  <a href="mailto:simplomatik@gmail.com" class="cta-email">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+    simplomatik@gmail.com
+  </a>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <p class="footer-logo">Simplomatik</p>
+  <p>© 2026 · Colombia · Automatización inteligente para pequeños negocios</p>
+</footer>
+
+</body>
+</html>
